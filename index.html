@@ -51,11 +51,12 @@
 
         }
 
-        function game(playerSelection,computerSelection)
+        function game()
         {
             for(let i =0;i<5;i++)
-            {
-                computerSelection=getComputerChoice();
+            { 
+                let computerSelection=getComputerChoice();
+                let playerSelection = prompt("Choose rock,paper,or scissors")
                 playRound(playerSelection, computerSelection);        
             }
             if(playerWinTotal>computerWinTotal)
@@ -66,11 +67,9 @@
                 console.log("You tied");
         }
         
-        const playerSelection = "rock";
-        let computerSelection = getComputerChoice();
         let playerWinTotal = 0;
         let computerWinTotal = 0;
-        game(playerSelection,computerSelection);
+        game();
     </script>
 </body>
 </html>
