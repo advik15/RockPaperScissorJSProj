@@ -7,8 +7,39 @@
     <title>Document</title>
 </head>
 <body>
-    <script> 
+    <button id = "rock"> ROCK</button>
+    <button id = "paper"> PAPER</button>
+    <button id = "scissors"> SCISSORS</button>
+    <div id = "container"></div>
+   
+   <script> 
         
+        const btn1 = document.querySelector("#rock");
+        const container = document.querySelector("#container");
+        const result = document.createElement("div");
+        const display = document.createElement("div");
+        btn1.addEventListener('click', () =>{
+            let playerSelection = "rock";
+            let computerSelection = getComputerChoice();
+            console.log(computerSelection);
+            playRound(playerSelection,computerSelection);
+        });
+        const btn2 = document.querySelector("#paper");
+        btn2.addEventListener('click', () =>{
+            let playerSelection = "paper";
+            let computerSelection = getComputerChoice();
+            console.log(computerSelection);
+            playRound(playerSelection,computerSelection);
+        });
+
+        const btn3 = document.querySelector("#scissors");
+        btn3.addEventListener('click', () =>{
+            let playerSelection = "scissors";
+            let computerSelection = getComputerChoice();
+            console.log(computerSelection);
+            playRound(playerSelection,computerSelection);
+        });
+
         function getComputerChoice() 
         {   
             const randnum = Math.floor(Math.random()*3); 
@@ -31,7 +62,10 @@
 
             if(computerSelection==playerSelection)
             {
-                console.log("tie game");
+                result.textContent="Tie Game!";
+                container.appendChild(result);
+                display.textContent = "Your wins: "+ playerWinTotal + " vs. Computer wins:" + computerWinTotal;
+                container.appendChild(display);
             }
             else if
             (
@@ -40,18 +74,34 @@
                 (computerSelection == "paper" && playerSelection == "rock")
             )
             {
-                console.log("You lost this round ");
+                result.textContent = "You Lost!";
+                container.appendChild(result);
                 computerWinTotal++;
+                if(computerWinTotal==5)
+                    display.textContent = "No the computer won the game!";
+                else
+                display.textContent = "Your wins: "+ playerWinTotal + " vs. Computer wins:" + computerWinTotal;
+                
+                container.appendChild(display);
+
             }
             else
             {
-                console.log("You won this round")
+                result.textContent = "You Won!";
+                container.appendChild(result);
                 playerWinTotal++;
+                if(playerWinTotal==5)
+                    display.textContent = "Good job you won!";
+                else
+                  display.textContent = "Your wins: "+ playerWinTotal + " vs. Computer wins:" + computerWinTotal;
+                 
+                 container.appendChild(display);
+
             }
 
         }
 
-        function game()
+      /*  function game()
         {
             for(let i =0;i<5;i++)
             { 
@@ -65,11 +115,10 @@
                 console.log("You lost the game");
             else
                 console.log("You tied");
-        }
+        }*/
         
         let playerWinTotal = 0;
         let computerWinTotal = 0;
-        game();
     </script>
 </body>
 </html>
